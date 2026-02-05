@@ -41,10 +41,13 @@ class OdometryPublisher:
 
         ######### Your code starts here #########
         # add odometry equations to calculate robot's self.x, self.y, self.theta given encoder values
-        # Calculate change in position (transform from robot frame to world frame)
-        delta_x = (self.vx * math.cos(self.theta) - self.vy * math.sin(self.theta)) * dt
-        delta_y = (self.vx * math.sin(self.theta) + self.vy * math.cos(self.theta)) * dt
+        # Update theta first
         delta_theta = self.vth * dt
+        theta_mid = self.theta + delta_theta / 2.0
+
+        # Calculate change in position using mid-point theta for better accuracy
+        delta_x = (self.vx * math.cos(theta_mid) - self.vy * math.sin(theta_mid)) * dt
+        delta_y = (self.vx * math.sin(theta_mid) + self.vy * math.cos(theta_mid)) * dt
 
         # Update position
         self.x += delta_x
