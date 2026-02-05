@@ -41,7 +41,15 @@ class OdometryPublisher:
 
         ######### Your code starts here #########
         # add odometry equations to calculate robot's self.x, self.y, self.theta given encoder values
+        # Calculate change in position (transform from robot frame to world frame)
+        delta_x = (self.vx * math.cos(self.theta) - self.vy * math.sin(self.theta)) * dt
+        delta_y = (self.vx * math.sin(self.theta) + self.vy * math.cos(self.theta)) * dt
+        delta_theta = self.vth * dt
 
+        # Update position
+        self.x += delta_x
+        self.y += delta_y
+        self.theta += delta_theta
         ######### Your code ends here #########
         
         odom_quat = tf.transformations.quaternion_from_euler(0, 0, self.theta)
