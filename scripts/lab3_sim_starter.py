@@ -46,13 +46,13 @@ class OdometryPublisher:
         theta_mid = self.theta + delta_theta / 2.0
 
         # Calculate change in position using mid-point theta for better accuracy
-        delta_x = (self.vx * math.cos(theta_mid) - self.vy * math.sin(theta_mid)) * dt
-        delta_y = (self.vx * math.sin(theta_mid) + self.vy * math.cos(theta_mid)) * dt
-
-        # Update position
-        self.x += delta_x
-        self.y += delta_y
+        delta_theta = self.vth *dt
+        delta_x = (self.vx * math.cos(self.theta)* dt) #change in x
+        delta_y = (self.vx * math.sin(self.theta)* dt) #change in y
         self.theta += delta_theta
+        self.x+=delta_x# update both and theta
+        self.y+=delta_y
+        print(f"x: {self.x:.2f}, y: {self.y:.2f}, theta: {self.theta:.2f}")
         ######### Your code ends here #########
         
         odom_quat = tf.transformations.quaternion_from_euler(0, 0, self.theta)
