@@ -22,7 +22,8 @@ class TurtlebotController:
         move_cmd = Twist()
         ######### Your code starts here #########
         # stop the TurtleBot
-
+        move_cmd.linear.x = 0.0
+        move_cmd.angular.z = 0.0
         ######### Your code ends here #########
         self.publish_twist(move_cmd, 1)  # Stop for 1 second
 
@@ -31,7 +32,8 @@ class TurtlebotController:
         move_cmd = Twist()
         ######### Your code starts here #########
         # move forward at a constant speed
-
+        move_cmd.linear.x = 0.2
+        move_cmd.angular.z = 0.0
         ######### Your code ends here #########
         self.publish_twist(move_cmd, 10)  # Move forward for 10 seconds
 
@@ -40,7 +42,8 @@ class TurtlebotController:
         move_cmd = Twist()
         ######### Your code starts here #########
         # move backward at a constant speed
-
+        move_cmd.linear.x = -0.2
+        move_cmd.angular.z = 0.0
         ######### Your code ends here #########
         self.publish_twist(move_cmd, 10)  # Move backward for 10 seconds
 
@@ -49,7 +52,8 @@ class TurtlebotController:
         move_cmd = Twist()
         ######### Your code starts here #########
         # turn left in place
-
+        move_cmd.linear.x = 0.0
+        move_cmd.angular.z = 0.5
         ######### Your code ends here #########
         self.publish_twist(move_cmd, 5)  # Turn left for 5 seconds
 
@@ -58,7 +62,8 @@ class TurtlebotController:
         move_cmd = Twist()
         ######### Your code starts here #########
         # turn right in place 
-
+        move_cmd.linear.x = 0.0
+        move_cmd.angular.z = -0.5
         ######### Your code ends here #########
         self.publish_twist(move_cmd, 5)  # Turn right for 5 seconds
 
